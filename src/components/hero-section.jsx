@@ -1,7 +1,6 @@
 import { ArrowRight, Loader2, CheckCircle, XCircle } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RESERVED_SUBDOMAINS from "@/lib/reserved";
 
 export function HeroSection() {
   const [domain, setDomain] = useState("");
@@ -44,12 +43,6 @@ export function HeroSection() {
       return;
     }
 
-    if (RESERVED_SUBDOMAINS.includes(domainLower)) {
-      setErrorMsg("This domain is reserved");
-      setIsAvailable(false);
-      return;
-    }
-
     setIsChecking(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/subdomains/check/${domainLower}`);
@@ -67,7 +60,7 @@ export function HeroSection() {
         setErrorMsg("");
       } else {
         setIsAvailable(false);
-        setErrorMsg("Domain is already taken");
+        setErrorMsg(data.message || "Domain is already taken");
       }
     } catch (error) {
       // Network error or other issue

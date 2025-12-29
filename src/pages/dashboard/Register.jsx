@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import { subdomainAPI } from "@/lib/api";
 import { useAuth } from "@/context/auth-context";
 import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info } from "lucide-react";
-import RESERVED_SUBDOMAINS from "@/lib/reserved";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 export default function Register() {
@@ -68,12 +67,6 @@ export default function Register() {
             return;
         }
 
-        if (RESERVED_SUBDOMAINS.includes(domainLower)) {
-            setErrorMsg("This domain is reserved");
-            setIsAvailable(false);
-            return;
-        }
-
         // Check if already owned
         const alreadyOwned = subdomains.some(s => s.name === domainLower);
         if (alreadyOwned) {
@@ -90,7 +83,7 @@ export default function Register() {
                 setErrorMsg("");
             } else {
                 setIsAvailable(false);
-                setErrorMsg("Domain is already taken");
+                setErrorMsg(response.message || "Domain is already taken");
             }
         } catch (error) {
             setErrorMsg(error.message || "Failed to check availability");
