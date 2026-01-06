@@ -131,9 +131,9 @@ export default function DomainDetail() {
                         </Link>
                     </Button>
                     <div className="min-w-0 flex-1 mr-4">
-                        <h1 className="text-3xl font-bold text-[#1A1A1A] flex items-start gap-2" title={`${domain.name}.indevs.in`}>
-                            <Globe className="w-8 h-8 flex-shrink-0 mt-1" />
-                            <span className="break-all">{domain.name}.indevs.in</span>
+                        <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] flex items-start gap-2" title={`${domain.name}.indevs.in`}>
+                            <Globe className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1" />
+                            <span className="break-words">{domain.name}.indevs.in</span>
                         </h1>
                         <p className="text-[#4A4A4A] text-sm mt-1">Domain ID: {domain._id}</p>
                     </div>

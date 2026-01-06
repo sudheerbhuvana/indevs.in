@@ -120,15 +120,15 @@ export default function MyDomains() {
 
     return (
         <div className="max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-10 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-10 gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-[#1A1A1A] capitalize">My Domains</h1>
-                    <p className="text-[#4A4A4A] mt-1">Manage your active domains and configurations.</p>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] capitalize">My Domains</h1>
+                    <p className="text-sm sm:text-base text-[#4A4A4A] mt-1">Manage your active domains and configurations.</p>
                 </div>
                 <Button
                     onClick={refresh}
                     disabled={loading}
-                    className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold"
+                    className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold w-full sm:w-auto"
                 >
                     <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
                     {loading ? 'Refreshing...' : 'Refresh List'}
@@ -192,9 +192,9 @@ export default function MyDomains() {
                             <tr key={domain._id} className="group hover:bg-gray-50 transition-colors">
                                 <td className="p-4 md:p-6 overflow-hidden">
                                     <div className="flex flex-col min-w-0">
-                                        <div className="font-bold text-[#1A1A1A] text-lg flex items-start gap-2 max-w-full">
+                                        <div className="font-bold text-[#1A1A1A] text-base sm:text-lg flex items-start gap-2 max-w-full">
                                             <Globe className="w-4 h-4 flex-shrink-0 mt-1.5" />
-                                            <span className="truncate md:break-words">
+                                            <span className="break-words">
                                                 {domain.name}.indevs.in
                                             </span>
                                         </div>
