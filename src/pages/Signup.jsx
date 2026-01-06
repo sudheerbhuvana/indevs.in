@@ -17,13 +17,9 @@ export default function Signup() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans">
             {/* Logo */}
-            <Link to="/" className="mb-8 flex items-center gap-1 group">
-                <div className="flex items-center font-extrabold text-3xl tracking-tighter gap-0.5">
-                    <span className="text-[#FF6B35]">IN</span>
-                    <span className="text-[#1A1A1A]">DE</span>
-                    <span className="text-[#138808]">VS</span>
-                </div>
-                <span className="text-lg font-bold text-[#1A1A1A] tracking-tight">.in</span>
+            <Link to="/" className="mb-8 flex items-center gap-3 group">
+                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
+                <span className="text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
             </Link>
 
             {/* Signup Card */}

@@ -110,7 +110,7 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg md:text-xl text-white max-w-3xl">
-              Made for <span className="font-bold text-white">Developers of India</span>, by Indians.
+              Made for <span className="font-bold text-white">the world</span>, by Indians.
               <br className="hidden md:block" />
               100% Open Source and cost-free. No strings attached.
             </p>

@@ -7,13 +7,20 @@ export function Footer() {
 
                     {/* Brand Section */}
                     <div>
-                        <a href="/" className="flex items-baseline gap-0.5 group mb-4">
-                            <div className="flex items-center font-extrabold text-3xl tracking-tighter gap-0.5">
-                                <span className="text-[#FF6B35]">IN</span>
-                                <span className="text-white">DE</span>
-                                <span className="text-[#138808]">VS</span>
+                        <a href="/" className="flex items-center gap-4 group mb-4">
+                            <div className="flex items-center gap-3">
+                                <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-12 w-auto" />
+                                <span className="text-2xl font-bold text-white tracking-tight">Stackryze Domains</span>
                             </div>
-                            <span className="text-lg font-bold text-white tracking-tight">.in</span>
+                            <div className="h-8 w-[1px] bg-[#333]"></div>
+                            <div className="flex items-baseline gap-0.5">
+                                <div className="flex items-center font-extrabold text-3xl tracking-tighter gap-0.5">
+                                    <span className="text-[#FF6B35]">IN</span>
+                                    <span className="text-white">DE</span>
+                                    <span className="text-[#138808]">VS</span>
+                                </div>
+                                <span className="text-lg font-bold text-white tracking-tight">.in</span>
+                            </div>
                         </a>
                         <p className="text-[#E5E3DF] text-sm mb-4 max-w-sm">
                             Free Domains for Developers
