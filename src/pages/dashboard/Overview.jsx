@@ -6,36 +6,36 @@ import { Button } from "@/components/ui/button";
 const StatCard = ({ icon: Icon, label, value, color, bgColor, to }) => (
     <Link
         to={to || "/my-domains"}
-        className="bg-white p-6 rounded-xl border-2 border-[#E5E3DF] hover:border-[#1A1A1A] transition-all hover:shadow-md group"
+        className="bg-white p-5 sm:p-6 rounded-xl border-2 border-[#E5E3DF] hover:border-[#1A1A1A] transition-all hover:shadow-md group active:scale-[0.98]"
     >
-        <div className="flex items-start justify-between mb-4">
-            <div className={`p-3 ${bgColor} rounded-lg`}>
-                <Icon className={`w-6 h-6 ${color}`} />
+        <div className="flex items-start justify-between mb-3 sm:mb-4">
+            <div className={`p-2.5 sm:p-3 ${bgColor} rounded-lg`}>
+                <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${color}`} />
             </div>
         </div>
-        <h3 className="text-4xl font-extrabold text-[#1A1A1A] mb-1">{value}</h3>
-        <p className="text-sm font-bold text-[#4A4A4A] uppercase tracking-wide">{label}</p>
+        <h3 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] mb-1">{value}</h3>
+        <p className="text-xs sm:text-sm font-bold text-[#4A4A4A] uppercase tracking-wide">{label}</p>
     </Link>
 );
 
 const QuickAction = ({ icon: Icon, label, description, to, variant = "default" }) => (
     <Link
         to={to}
-        className={`p-6 rounded-xl border-2 transition-all hover:shadow-md ${variant === "primary"
+        className={`p-5 sm:p-6 rounded-xl border-2 transition-all hover:shadow-md active:scale-[0.98] ${variant === "primary"
             ? "bg-[#1A1A1A] text-white border-[#1A1A1A] hover:bg-[#333]"
             : "bg-white border-[#E5E3DF] hover:border-[#1A1A1A]"
             }`}
     >
-        <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-lg flex-shrink-0 ${variant === "primary" ? "bg-white/20" : "bg-[#FFF8F0]"
+        <div className="flex items-start gap-3 sm:gap-4">
+            <div className={`p-2.5 sm:p-3 rounded-lg flex-shrink-0 ${variant === "primary" ? "bg-white/20" : "bg-[#FFF8F0]"
                 }`}>
-                <Icon className={`w-6 h-6 ${variant === "primary" ? "text-white" : "text-[#1A1A1A]"}`} />
+                <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${variant === "primary" ? "text-white" : "text-[#1A1A1A]"}`} />
             </div>
             <div className="flex-1">
-                <h4 className={`text-lg font-bold mb-1 ${variant === "primary" ? "text-white" : "text-[#1A1A1A]"}`}>
+                <h4 className={`text-base sm:text-lg font-bold mb-1 ${variant === "primary" ? "text-white" : "text-[#1A1A1A]"}`}>
                     {label}
                 </h4>
-                <p className={`text-sm ${variant === "primary" ? "text-white/80" : "text-[#4A4A4A]"}`}>
+                <p className={`text-xs sm:text-sm ${variant === "primary" ? "text-white/80" : "text-[#4A4A4A]"}`}>
                     {description}
                 </p>
             </div>
@@ -73,15 +73,15 @@ export default function Overview() {
     }
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-[#1A1A1A] mb-2">Dashboard Overview</h1>
-                <p className="text-[#4A4A4A]">Manage your subdomains and monitor activity</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] mb-2">Dashboard Overview</h1>
+                <p className="text-sm sm:text-base text-[#4A4A4A]">Manage your subdomains and monitor activity</p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                 <StatCard
                     icon={Globe}
                     label="Total Domains"
@@ -107,8 +107,8 @@ export default function Overview() {
 
             {/* Quick Actions */}
             <div>
-                <h2 className="text-xl font-bold text-[#1A1A1A] mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A] mb-4">Quick Actions</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <QuickAction
                         icon={Plus}
                         label="Register New Domain"
@@ -139,13 +139,13 @@ export default function Overview() {
 
             {/* Welcome message for new users */}
             {subdomains.length === 0 && !loading && (
-                <div className="bg-gradient-to-br from-[#FFF8F0] to-[#FFE8D6] rounded-xl border-2 border-[#E5E3DF] p-8 text-center">
-                    <Globe className="w-16 h-16 text-[#FF6B35] mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">Welcome to Indevs! 🎉</h3>
-                    <p className="text-[#4A4A4A] mb-6 max-w-md mx-auto">
+                <div className="bg-gradient-to-br from-[#FFF8F0] to-[#FFE8D6] rounded-xl border-2 border-[#E5E3DF] p-6 sm:p-8 text-center">
+                    <Globe className="w-12 h-12 sm:w-16 sm:h-16 text-[#FF6B35] mx-auto mb-4" />
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-3">Welcome to Indevs! 🎉</h3>
+                    <p className="text-sm sm:text-base text-[#4A4A4A] mb-6 max-w-md mx-auto">
                         Get started by registering your first domain. It's free and takes less than a minute!
                     </p>
-                    <Button asChild className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold">
+                    <Button asChild className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold w-full sm:w-auto">
                         <Link to="/register">
                             <Plus className="w-4 h-4 mr-2" />
                             Register Your First Domain
