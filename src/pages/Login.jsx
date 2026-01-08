@@ -27,7 +27,7 @@ export default function Login() {
                     break;
                 case 'github_failed':
                     title = "Authentication Failed";
-                    description = "Could not sign in with GitHub. Please try again.";
+                    description = "Could not sign in with GitHub. Please try again later.";
                     break;
                 case 'server_error':
                     title = "Server Error";
@@ -35,12 +35,16 @@ export default function Login() {
                     break;
                 case 'github_account_too_new':
                     const daysRequired = searchParams.get('days') || '7';
-                    title = "GitHub Account Too New";
-                    description = `Your GitHub account must be at least 7 days old. Please try again in ${daysRequired} day(s).`;
+                    title = "Account Looks Suspicious";
+                    description = `Your GitHub account appears to be recently created. We cannot proceed at this time. Please refrain from using alt or spam accounts. If you believe this is a mistake, please contact support. (Account must be at least 7 days old, ${daysRequired} day(s) remaining)`;
                     break;
                 case 'no_public_email':
                     title = "Public Email Required";
                     description = "We need a public email from your GitHub account to create your account and send important notifications.";
+                    break;
+                default:
+                    title = "Login Failed";
+                    description = error || "An unknown error occurred. Please try again.";
                     break;
             }
 
@@ -73,6 +77,17 @@ export default function Login() {
                     </div>
                 )}
 
+                {error === 'github_account_too_new' && (
+                    <div className="mb-6 bg-orange-50 border border-orange-200 text-orange-800 p-4 rounded-lg text-sm">
+                        <p className="font-bold mb-2">⚠️ Account Looks Suspicious</p>
+                        <p className="mb-3">Your GitHub account appears to be recently created. We cannot proceed at this time.</p>
+                        <p className="mb-2"><strong>Please refrain from using alt or spam accounts.</strong></p>
+                        <p className="text-xs text-orange-600">
+                            💡 <strong>Think this is a mistake?</strong> Please <a href="mailto:support@stackryze.com" className="underline font-medium">contact support</a> with your GitHub username.
+                        </p>
+                    </div>
+                )}
+
                 {error === 'no_public_email' && (
                     <div className="mb-6 bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-lg text-sm">
                         <p className="font-bold mb-2">📧 Public Email Required</p>
@@ -83,12 +98,6 @@ export default function Login() {
                             <li>Come back and try logging in again</li>
                         </ol>
                         <p className="text-xs text-blue-600">💡 <strong>Tip:</strong> Use a separate email for GitHub if you're worried about spam.</p>
-                    </div>
-                )}
-
-                {error && error !== 'banned' && error !== 'no_public_email' && (
-                    <div className="mb-6 bg-red-50 border border-red-100 text-red-600 p-4 rounded-lg text-sm font-medium">
-                        Login failed. Please try again.
                     </div>
                 )}
 
