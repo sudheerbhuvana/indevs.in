@@ -17,6 +17,10 @@ export default function Login() {
     const { toast } = useToast();
 
     useEffect(() => {
+        console.log('[Login] useEffect triggered');
+        console.log('[Login] error param:', error);
+        console.log('[Login] searchParams:', searchParams.toString());
+
         if (error) {
             let title = "Login Failed";
             let description = "An unknown error occurred.";
@@ -59,6 +63,7 @@ export default function Login() {
                     break;
             }
 
+            console.log('[Login] Showing toast:', { title, description });
             toast({
                 variant: "destructive",
                 title,
