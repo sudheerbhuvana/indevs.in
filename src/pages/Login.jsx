@@ -65,7 +65,7 @@ export default function Login() {
                 description,
             });
         }
-    }, [error, toast]);
+    }, [error, toast, searchParams]);
 
     const handleGithubLogin = () => login("github");
 
