@@ -6,6 +6,7 @@ import { Loader2, CheckCircle } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function Signup() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -37,12 +38,17 @@ export default function Signup() {
             });
             navigate(`/verify-email?email=${encodeURIComponent(email)}`);
         } catch (err) {
+            console.error('Signup error:', err);
+            console.error('Error response:', err.response?.data);
+
+            const errorMessage = err.response?.data?.error || err.message || "Could not create account. Please try again.";
+
             toast({
                 variant: "destructive",
                 title: "Registration Failed",
-                description: err.response?.data?.error || "Could not create account.",
+                description: errorMessage,
             });
-            setCaptchaToken(null); // Reset captcha on error usually required
+            setCaptchaToken(null); // Reset captcha on error
         } finally {
             setIsLoading(false);
         }

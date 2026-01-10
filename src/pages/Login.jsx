@@ -12,6 +12,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [errorBanner, setErrorBanner] = useState(null);
     const [searchParams] = useSearchParams();
     const error = searchParams.get('error');
     const { toast } = useToast();
@@ -64,6 +65,10 @@ export default function Login() {
             }
 
             console.log('[Login] Showing toast:', { title, description });
+
+            // Temporary: Alert fallback since toast UI isn't rendering
+            alert(`${title}\n\n${description}`);
+
             toast({
                 variant: "destructive",
                 title,
@@ -108,6 +113,22 @@ export default function Login() {
             <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl text-center">
                 <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Welcome back</h1>
                 <p className="text-[#4A4A4A] mb-8">Sign in to manage your subdomains</p>
+
+                {/* Error Banner */}
+                {errorBanner && (
+                    <div className="mb-6 p-4 bg-red-50 border-2 border-red-600 rounded-lg text-left">
+                        <div className="flex items-start gap-3">
+                            <div className="flex-1">
+                                <h3 className="font-bold text-red-900 mb-1">{errorBanner.title}</h3>
+                                <p className="text-sm text-red-800">{errorBanner.description}</p>
+                            </div>
+                            <button
+                                onClick={() => setErrorBanner(null)}
+                                className="text-red-900 hover:text-red-700 font-bold text-xl"
+                            >×</button>
+                        </div>
+                    </div>
+                )}
 
                 {error === 'banned' && (
                     <div className="mb-6 bg-red-50 border border-red-100 text-red-600 p-4 rounded-lg text-sm font-medium">
