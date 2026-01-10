@@ -54,10 +54,23 @@ export default function SetPassword() {
             navigate('/dashboard');
 
         } catch (err) {
+            console.error('Set Password Error:', err);
+            console.error('Error response:', err.response);
+
+            let errorMessage = 'Failed to set password.';
+
+            if (err.response?.status === 401) {
+                errorMessage = 'Session expired. Please log in again.';
+            } else if (err.response?.data?.error) {
+                errorMessage = err.response.data.error;
+            } else if (err.message) {
+                errorMessage = err.message;
+            }
+
             toast({
                 variant: "destructive",
                 title: "Error",
-                description: err.response?.data?.error || "Failed to set password.",
+                description: errorMessage,
             });
         } finally {
             setIsLoading(false);

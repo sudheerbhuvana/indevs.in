@@ -148,6 +148,18 @@ export const subdomainAPI = {
                 recordType: recordType || 'NS'
             })
         }),
+
+    // Generic methods for custom endpoints
+    post: async (endpoint, data) => {
+        return apiRequest(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+    },
+
+    get: async (endpoint) => {
+        return apiRequest(endpoint);
+    },
 };
 
 export const API = {
