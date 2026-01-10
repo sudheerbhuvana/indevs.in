@@ -37,8 +37,14 @@ export function Header() {
             <a href="/about" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
               About
             </a>
-            <a href="/docs" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
+            <a href="https://domain-docs.stackryze.com" target="_blank" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
               Docs
+            </a>
+            <a href="https://status.stackryze.com/status/stackryze" target="_blank" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
+              Status
+            </a>
+            <a href="https://discord.gg/wr7s97cfM7" target="_blank" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
+              Discord
             </a>
             <a
               href="https://github.com/sudheerbhuvana/indevs.in"
