@@ -1,6 +1,6 @@
 import { Heart, Github } from "lucide-react";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { FooterSection } from "@/components/footer-section";
 
 export function Donate() {
     return (
@@ -108,7 +108,7 @@ export function Donate() {
                 </div>
             </main>
 
-            <Footer />
+            <FooterSection />
         </div>
     );
 }

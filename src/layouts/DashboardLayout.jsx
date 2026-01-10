@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { FooterSection } from "@/components/footer-section";
 import { DashboardProvider } from "@/context/dashboard-context";
 import {
     LayoutDashboard,
@@ -197,7 +197,7 @@ export default function DashboardLayout() {
                 </div>
 
                 <div className="md:ml-64">
-                    <Footer />
+                    <FooterSection />
                 </div>
             </div>
         </DashboardProvider>

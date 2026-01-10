@@ -1,5 +1,5 @@
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { FooterSection } from "@/components/footer-section";
 
 export function LegalLayout({ children, title, date }) {
     return (
@@ -28,7 +28,7 @@ export function LegalLayout({ children, title, date }) {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <FooterSection />
         </div>
     );
 }
