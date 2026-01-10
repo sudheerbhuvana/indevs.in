@@ -66,15 +66,16 @@ export default function DomainDetail() {
             await subdomainAPI.delete(domain._id);
             toast({
                 title: "Deletion Request Submitted",
-                description: "Your domain will remain active until reviewed within 48 hours.",
-                className: "bg-amber-50 border-amber-200 text-amber-900"
+                description: "Your deletion request will be reviewed by an admin. The domain will remain active until approved.",
+                className: "bg-blue-50 border-blue-200 text-blue-900"
             });
             await refresh();
-            // Don't navigate away - keep them on the page to see "Pending Deletion" status
+            // Navigate away since domain is gone
+            // If refresh updates subdomains list, the useEffect will redirect or show not found
         } catch (error) {
             toast({
-                title: "Deletion Request Failed",
-                description: error.message || "Unable to submit deletion request. Please try again or contact support.",
+                title: "Deletion Failed",
+                description: error.message || "Unable to delete domain. Please try again or contact support.",
                 variant: "destructive"
             });
         } finally {
@@ -151,7 +152,7 @@ export default function DomainDetail() {
                                     : ''
                         }
                     >
-                        <RefreshCw className={`w - 4 h - 4 mr - 2 ${isRenewing ? 'animate-spin' : ''}`} />
+                        <RefreshCw className={`w-4 h-4 mr-2 ${isRenewing ? 'animate-spin' : ''}`} />
                         {isRenewing ? 'Renewing...' : 'Renew Domain'}
                     </Button>
                     {daysUntilExpiry && daysUntilExpiry > 60 && domain.status !== 'Pending Deletion' && (
@@ -175,7 +176,7 @@ export default function DomainDetail() {
                 <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-6 space-y-4">
                     <div>
                         <p className="text-xs font-bold text-[#888] uppercase mb-1">Status</p>
-                        <p className={`text - xl font - extrabold ${domain.status === 'Active' ? 'text-[#1e8e3e]' :
+                        <p className={`text-xl font-extrabold ${domain.status === 'Active' ? 'text-[#1e8e3e]' :
                             domain.status === 'Pending Deletion' ? 'text-amber-600' :
                                 'text-[#b06000]'
                             }`}>
@@ -209,11 +210,11 @@ export default function DomainDetail() {
                     </p>
 
                     {daysUntilExpiry && daysUntilExpiry <= 60 && daysUntilExpiry > 0 && (
-                        <div className={`mt - 4 p - 3 rounded - lg ${daysUntilExpiry <= 30 ? 'bg-red-50 border-l-4 border-red-500' : 'bg-amber-50 border-l-4 border-amber-500'}`}>
-                            <p className={`text - sm font - bold ${daysUntilExpiry <= 30 ? 'text-red-900' : 'text-amber-900'} `}>
+                        <div className={`mt-4 p-3 rounded-lg ${daysUntilExpiry <= 30 ? 'bg-red-50 border-l-4 border-red-500' : 'bg-amber-50 border-l-4 border-amber-500'}`}>
+                            <p className={`text-sm font-bold ${daysUntilExpiry <= 30 ? 'text-red-900' : 'text-amber-900'} `}>
                                 {daysUntilExpiry <= 30 ? '⚠️' : '🔔'} {daysUntilExpiry} days remaining
                             </p>
-                            <p className={`text - xs mt - 1 ${daysUntilExpiry <= 30 ? 'text-red-700' : 'text-amber-700'} `}>
+                            <p className={`text-xs mt-1 ${daysUntilExpiry <= 30 ? 'text-red-700' : 'text-amber-700'} `}>
                                 {daysUntilExpiry <= 30 ? 'Renew soon to avoid expiration' : 'You can renew your domain now'}
                             </p>
                         </div>
@@ -386,8 +387,8 @@ export default function DomainDetail() {
                     <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                             <div className="flex-1">
-                                <p className="font-bold text-red-900 mb-1">Delete This Domain</p>
-                                <p className="text-sm text-red-700">Deletion requests are reviewed and processed within 48 hours. This action cannot be undone.</p>
+                                <p className="font-bold text-red-900 mb-1">Request Deletion</p>
+                                <p className="text-sm text-red-700">Submit this domain for deletion. An admin will review your request.</p>
                             </div>
                             <button
                                 onClick={() => setDeleteDialogOpen(true)}
@@ -408,7 +409,7 @@ export default function DomainDetail() {
                         <AlertDialogTitle>Delete Domain?</AlertDialogTitle>
                         <AlertDialogDescription>
                             Your deletion request for <strong className="font-bold">{domain.name}.indevs.in</strong> will be submitted for review.
-                            The domain will be deleted within 48 hours after verification.
+                            The domain will remain active until approved.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

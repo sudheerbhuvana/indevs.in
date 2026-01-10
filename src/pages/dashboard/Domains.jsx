@@ -36,16 +36,16 @@ export default function MyDomains() {
 
             toast({
                 title: "Deletion Request Submitted",
-                description: "Your deletion request will be reviewed within 48 hours. The domain will remain visible until approved.",
-                className: "bg-amber-50 border-amber-200 text-amber-900"
+                description: "Your deletion request will be reviewed by an admin. The domain will remain active until approved.",
+                className: "bg-blue-50 border-blue-200 text-blue-900"
             });
 
             // Refresh the list from backend
             await refresh();
         } catch (error) {
             toast({
-                title: "Deletion Request Failed",
-                description: error.message || "Unable to submit deletion request. Please try again or contact support if the issue persists.",
+                title: "Deletion Failed",
+                description: error.message || "Unable to delete domain. Please try again or contact support.",
                 variant: "destructive",
             });
         } finally {
@@ -447,8 +447,9 @@ export default function MyDomains() {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete the domain
-                            <strong className="font-bold"> {selectedDomain?.name}.indevs.in</strong> and remove all associated data. from our servers.
+                            This action cannot be undone. Your deletion request for
+                            <strong className="font-bold"> {selectedDomain?.name}.indevs.in</strong> will be submitted for admin review.
+                            The domain will remain active until approved.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
