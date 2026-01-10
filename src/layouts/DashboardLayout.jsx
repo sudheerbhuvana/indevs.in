@@ -14,7 +14,8 @@ import {
     Heart,
     Server,
     Menu,
-    X
+    X,
+    Clock
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 
@@ -85,6 +86,13 @@ export default function DashboardLayout() {
                     icon={Plus}
                     label="Register Domain"
                     active={isActive("/register")}
+                    onClick={() => setSidebarOpen(false)}
+                />
+                <SidebarItem
+                    to="/history"
+                    icon={Clock}
+                    label="History"
+                    active={isActive("/history")}
                     onClick={() => setSidebarOpen(false)}
                 />
                 <div className="pt-4 border-t border-[#E5E3DF] my-2"></div>
