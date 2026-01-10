@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
 import { Loader2, Mail } from "lucide-react";
 
 export default function ForgotPassword() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [isSent, setIsSent] = useState(false);
     const { toast } = useToast();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            // Note: Route /auth/email/forgot-password logic needs to be added in backend if not already present
-            // For now UI is ready
             await subdomainAPI.post('/auth/email/forgot-password', { email });
-            setIsSent(true);
+
+            // Show success toast
+            toast({
+                title: "Email Sent!",
+                description: "Check your inbox for the reset code.",
+            });
+
+            // Navigate to reset password page with email pre-filled
+            navigate(`/reset-password?email=${encodeURIComponent(email)}`);
         } catch (err) {
             toast({
                 variant: "destructive",
@@ -28,19 +34,6 @@ export default function ForgotPassword() {
             setIsLoading(false);
         }
     };
-
-    if (isSent) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans">
-                <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 rounded-xl text-center">
-                    <Mail className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                    <h1 className="text-2xl font-bold mb-2">Check your inbox</h1>
-                    <p className="text-gray-600 mb-6">If an account exists for <strong>{email}</strong>, we have sent password reset instructions.</p>
-                    <Link to="/login" className="text-black hover:underline">Back to Login</Link>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans">
