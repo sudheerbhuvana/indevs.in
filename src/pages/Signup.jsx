@@ -10,6 +10,10 @@ export default function Signup() {
     const [searchParams] = useSearchParams();
     const message = searchParams.get('message');
     const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [legalFullName, setLegalFullName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [fullAddress, setFullAddress] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [captchaToken, setCaptchaToken] = useState(null);
@@ -43,6 +47,10 @@ export default function Signup() {
         try {
             await subdomainAPI.post('/auth/email/register', {
                 name,
+                username,
+                legalFullName,
+                phoneNumber,
+                fullAddress,
                 email,
                 password,
                 captchaToken
@@ -92,7 +100,7 @@ export default function Signup() {
 
                 <form onSubmit={handleSignup} className="space-y-4 text-left">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
                         <input
                             type="text"
                             required
@@ -100,6 +108,50 @@ export default function Signup() {
                             onChange={(e) => setName(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
                             placeholder="John Doe"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input
+                            type="text"
+                            required
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            placeholder="johndoe"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Legal Full Name</label>
+                        <input
+                            type="text"
+                            required
+                            value={legalFullName}
+                            onChange={(e) => setLegalFullName(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            placeholder="Full Legal Name"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number (with Country Code)</label>
+                        <input
+                            type="tel"
+                            required
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            placeholder="+1 234 567 8900"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Address</label>
+                        <textarea
+                            required
+                            value={fullAddress}
+                            onChange={(e) => setFullAddress(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            placeholder="Street, City, State, ZIP, Country"
+                            rows={3}
                         />
                     </div>
                     <div>
