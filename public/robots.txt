@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemaps
-Sitemap: https://domain.stackryze.com/sitemap.xml
-
-# Crawl-delay to be respectful to search engines
-Crawl-delay: 1
