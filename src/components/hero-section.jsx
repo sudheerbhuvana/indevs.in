@@ -194,19 +194,19 @@ export function HeroSection() {
                 </Link>
               </div>
             </div>
-          </div>
 
-          {/* Sponsored By */}
-          <div className="mt-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-4">
-              Sponsored By
-            </p>
-            <div className="flex justify-center items-center gap-8">
-              <img
-                src="/Cloudflare_Logo.svg.png"
-                alt="Cloudflare"
-                className="h-8 md:h-10 w-auto object-contain"
-              />
+            {/* Sponsored By */}
+            <div className="mt-8 text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-4">
+                Sponsored By
+              </p>
+              <div className="flex justify-center items-center gap-8">
+                <img
+                  src="/Cloudflare_Logo.svg.png"
+                  alt="Cloudflare"
+                  className="h-8 md:h-10 w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
