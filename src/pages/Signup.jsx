@@ -62,9 +62,9 @@ export default function Signup() {
         const timeoutId = setTimeout(async () => {
             try {
                 const response = await subdomainAPI.post('/auth/email/check-username', { username });
-                setUsernameAvailable(response.data.available);
-                if (response.data.error) {
-                    setUsernameError(response.data.error);
+                setUsernameAvailable(response.available);
+                if (response.error) {
+                    setUsernameError(response.error);
                 }
             } catch (err) {
                 console.error('Username check error:', err);
@@ -121,7 +121,7 @@ export default function Signup() {
             });
             navigate(`/verify-email?email=${encodeURIComponent(email)}`);
         } catch (err) {
-            const errorMessage = err.response?.data?.error || err.message || "Could not create account. Please try again.";
+            const errorMessage = err.data?.error || err.message || "Could not create account. Please try again.";
 
             toast({
                 variant: "destructive",

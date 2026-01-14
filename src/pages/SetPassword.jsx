@@ -59,10 +59,10 @@ export default function SetPassword() {
 
             let errorMessage = 'Failed to set password.';
 
-            if (err.response?.status === 401) {
+            if (err.status === 401) {
                 errorMessage = 'Session expired. Please log in again.';
-            } else if (err.response?.data?.error) {
-                errorMessage = err.response.data.error;
+            } else if (err.data?.error) {
+                errorMessage = err.data.error;
             } else if (err.message) {
                 errorMessage = err.message;
             }
