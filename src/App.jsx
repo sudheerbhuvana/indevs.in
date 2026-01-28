@@ -41,10 +41,12 @@ const ProtectedRoute = ({ children }) => {
   if (loading) return <div className="flex items-center justify-center min-h-screen bg-[#FFF8F0] font-bold text-xl">Loading...</div>;
   if (!user) return <Navigate to={`/login${search}`} replace />; // Preserve ?error=... params
 
-  // FORCE REDIRECT: Users with noreply emails MUST change their email first
-  // They cannot access any other page until email is updated
+  // FORCE REDIRECT: Users with noreply emails MUST change their email
+  // BUT: Allow them to complete migration steps first (/set-password, /complete-profile)
+  // This ensures backend migration flow isn't disrupted
   const isNoreplyEmail = user?.email?.includes('noreply.github.com');
-  if (isNoreplyEmail && location !== '/change-email') {
+  const allowedPagesForNoreply = ['/change-email', '/set-password', '/complete-profile'];
+  if (isNoreplyEmail && !allowedPagesForNoreply.includes(location)) {
     return <Navigate to={`/change-email?email=${encodeURIComponent(user.email)}&required=true`} replace />;
   }
 
